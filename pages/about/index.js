@@ -8,6 +8,7 @@ import { fadeIn } from '../../variants';
 
 import CountUp from 'react-countup';
 
+
 //  data
 export const aboutData = [
   {
@@ -195,27 +196,31 @@ const About = () => {
                   cursor-pointer capitalize xl:text-lg relative after:w-8 after:h-[2px] after:absolute after:-bottom-1 after:left-0
                   ${index === itemIndex ? 'after:bg-accent after:w-[100%] after:transition-all after:duration-300': 'after:bg-white'}`}
                   onClick={() => setIndex(itemIndex)}
-                >{item.title}</div>
+                >
+                  {item.title}
+                </div>
               )
             })}
           </div>
           <div className='py-2 xl:py-6 flex flex-col gap-y-2 xl:gap-y-4 items-center xl:items-start'>
-            {aboutData[index].info.map((item, itemIndex) => {
+            {aboutData[index].info.map((item, infoIndex) => {
+
               return (
-                <div key={itemIndex} className='flex-1 flex flex-col md:flex-row max-w-max gap-x-2 items-center text-white/60'>
+                <div key={`${infoIndex}-${item.title}`} className='flex-1 flex flex-col md:flex-row max-w-max gap-x-2 items-center text-white/60'>
                   {/* title */}
                   <div className='font-light mb-2 md:mb-0'>{item.title}</div>
                   <div className='hidden md:flex'>-</div>
                   <div>{item.stage}</div>
                   <div className='flex gap-x-4'>
                     {/* icons */}
-                    {item.icons?.map((icon, itemIndex) => {
-                      return (
-                        <div key={itemIndex} className='text-2xl text-white'>
+                    {item.icons?.map((icon, iconIndex) => {
+
+                      return <div key={`${iconIndex}-icon`} className='text-2xl text-white'>
                           {icon}
                         </div>
-                      )
+                      
                     })}
+                    
                   </div>
                 </div>
               )
